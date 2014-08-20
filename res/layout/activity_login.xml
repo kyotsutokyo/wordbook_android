@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+				android:id="@+id/textview"
+  				android:text="@string/user"/>
+  	<!-- ユーザー名 -->
+    <EditText android:id="@+id/user_name" android:layout_width="fill_parent"
+    			android:layout_height ="wrap_content" />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+  				android:text="@string/password"/>
+  	<!-- パスワード -->
+    <EditText android:id="@+id/user_password" android:layout_width="fill_parent"
+    			android:layout_height ="wrap_content" android:password="true"/>
+   　 	<Button android:id="@+id/login" android:layout_width="wrap_content" android:layout_height="wrap_content"
+   		android:text="@string/online_mode_click" android:layout_gravity="center_horizontal"
+   		style="@style/ButtonText" android:background="@drawable/blue_button"
+   		android:onClick="onLoginClick" 
+   		/>	
+   		
+   <LinearLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" 
+              android:layout_marginBottom="10dip"
+              >
+   <Button android:id="@+id/forgot_password" android:layout_width="wrap_content" android:layout_height="wrap_content"
+   			android:text="@string/forgot_password" android:layout_gravity="center_horizontal"
+   			style="@style/ButtonText" android:background="@drawable/green_button"
+   		/>	 
+   	  <Button android:id="@+id/register" android:layout_width="wrap_content" android:layout_height="wrap_content"
+   			android:text="@string/register" android:layout_gravity="center_horizontal"
+   			style="@style/ButtonText" android:background="@drawable/green_button"
+   		/>	
+   	<Button android:id="@+id/cancel_login" android:layout_width="wrap_content" android:layout_height="wrap_content"
+   			android:text="@string/cancel_login" android:layout_gravity="center_horizontal"
+   			style="@style/ButtonText" android:background="@drawable/green_button"
+   		/>	
+   	</LinearLayout>
+</LinearLayout>
+
+			

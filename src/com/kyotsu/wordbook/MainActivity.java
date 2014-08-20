@@ -64,14 +64,14 @@ public class MainActivity extends FragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				Intent intent = new Intent(getBaseContext(), Worddetail.class);
-				WordbookEntity word = ws.getList().get(position);
-				intent.putExtra("WordItem", word.getWord());
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				getBaseContext().startActivity(intent);
-				
-				
-				
+				if (!ws.isDeleteWord) {
+					Intent intent = new Intent(getBaseContext(),
+							Worddetail.class);
+					WordbookEntity word = ws.getList().get(position);
+					intent.putExtra("WordItem", word.getWord());
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getBaseContext().startActivity(intent);
+				}
 			}
 		});
 		mListView
@@ -79,52 +79,60 @@ public class MainActivity extends FragmentActivity {
 					@Override
 					public boolean onItemLongClick(AdapterView<?> parent,
 							View view, int position, long id) {
-						if (ws.getSectionHeader().contains(position))
-							return false;
-						final WordbookEntity word = ws.getList().get(position);
-						final Dialog dialog = new Dialog(MainActivity.this);
-						dialog.setContentView(R.layout.trans_edit);
-						dialog.setTitle("修改單字解釋");
-						Button okbutton = (Button) dialog.findViewById(R.id.ok);
-						Button cancelButton = (Button) dialog
-								.findViewById(R.id.cancel);
-						final String word_item = word.getWord();
-						final Date date = word.getCreateDate();
-						((TextView) dialog.findViewById(R.id.fix_word))
-								.setText(word_item);
-						okbutton.setOnClickListener(new OnClickListener() {
-							public void onClick(View v) {
-								dbHelper.DeleteWord(word_item, "2");
-								List<WordbookEntity> wbList = dbHelper
-										.GetWords();
-								dbHelper.DeleteWords(ws.getCheckedList());
-								List<WordbookEntity> newList = DeleteWordFromList(
-										ws.getList(), ws.getCheckedList());
-								String translation = ((EditText) dialog
-										.findViewById(R.id.Translation_edit))
-										.getText().toString();
-								dbHelper.ChangeWord(word_item, translation,
-										"2", date);
+						if (!ws.isDeleteWord) {
+							if (ws.getSectionHeader().contains(position))
+								return false;
+							final WordbookEntity word = ws.getList().get(
+									position);
+							final Dialog dialog = new Dialog(MainActivity.this);
+							dialog.setContentView(R.layout.trans_edit);
+							dialog.setTitle("修改單字解釋");
+							Button okbutton = (Button) dialog
+									.findViewById(R.id.ok);
+							Button cancelButton = (Button) dialog
+									.findViewById(R.id.cancel);
+							final String word_item = word.getWord();
+							final Date date = word.getCreateDate();
+							((TextView) dialog.findViewById(R.id.fix_word))
+									.setText(word_item);
+							((TextView) dialog
+									.findViewById(R.id.Translation_edit))
+									.setText(word.getTranslation());
+							okbutton.setOnClickListener(new OnClickListener() {
+								public void onClick(View v) {
+									dbHelper.DeleteWord(word_item, "2");
+									List<WordbookEntity> wbList = dbHelper
+											.GetWords();
+									dbHelper.DeleteWords(ws.getCheckedList());
+									String translation = ((EditText) dialog
+											.findViewById(R.id.Translation_edit))
+											.getText().toString();
+									dbHelper.ChangeWord(word_item, translation,
+											"2", date);
 
-								if (ws.isOrderByTime)
-									wbList = dbHelper.GetWordsByTime();
-								else
-									wbList = dbHelper.GetWordsAlphabetizer();
-								ws.setList(wbList);
-								ws.notifyDataSetChanged();
+									if (ws.isOrderByTime)
+										wbList = dbHelper.GetWordsByTime();
+									else
+										wbList = dbHelper
+												.GetWordsAlphabetizer();
+									ws.setList(wbList);
+									ws.notifyDataSetChanged();
 
-								Toast.makeText(MainActivity.this, "修改成功しました。",
-										Toast.LENGTH_SHORT).show();
-								dialog.dismiss();
-							}
-						});
+									Toast.makeText(MainActivity.this,
+											"修改成功しました。", Toast.LENGTH_SHORT)
+											.show();
+									dialog.dismiss();
+								}
+							});
 
-						cancelButton.setOnClickListener(new OnClickListener() {
-							public void onClick(View v) {
-								dialog.dismiss();
-							}
-						});
-						dialog.show();
+							cancelButton
+									.setOnClickListener(new OnClickListener() {
+										public void onClick(View v) {
+											dialog.dismiss();
+										}
+									});
+							dialog.show();
+						}
 						return true;
 					}
 				});
@@ -320,31 +328,35 @@ public class MainActivity extends FragmentActivity {
 			Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.action_Login: {
-			final Dialog dialog = new Dialog(MainActivity.this);
-			dialog.setContentView(R.layout.login);
-			dialog.setTitle("ログイン");
-			Button button = (Button) dialog.findViewById(R.id.login);
-			button.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					String ID = ((EditText) dialog.findViewById(R.id.user_id))
-							.getText().toString();
-					String password = ((EditText) dialog
-							.findViewById(R.id.user_password)).getText()
-							.toString();
-					// accountHelper.Login(ID, password);
-					new LoginTask(MainActivity.this).execute(new String[] { ID,
-							password, AppContext.url });
-					dialog.dismiss();
-				}
-			});
+			Intent intent = new Intent(getBaseContext(), Login.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			getBaseContext().startActivity(intent);
 
-			Button cancelButton = (Button) dialog.findViewById(R.id.cancel);
-			cancelButton.setOnClickListener(new OnClickListener() {
-				public void onClick(View v) {
-					dialog.dismiss();
-				}
-			});
-			dialog.show();
+			// final Dialog dialog = new Dialog(MainActivity.this);
+			// dialog.setContentView(R.layout.login_dialog);
+			// dialog.setTitle("ログイン");
+			// Button button = (Button) dialog.findViewById(R.id.login);
+			// button.setOnClickListener(new OnClickListener() {
+			// public void onClick(View v) {
+			// String ID = ((EditText) dialog.findViewById(R.id.user_id))
+			// .getText().toString();
+			// String password = ((EditText) dialog
+			// .findViewById(R.id.user_password)).getText()
+			// .toString();
+			// // accountHelper.Login(ID, password);
+			// new LoginTask(MainActivity.this).execute(new String[] { ID,
+			// password, AppContext.url });
+			// dialog.dismiss();
+			// }
+			// });
+			//
+			// Button cancelButton = (Button) dialog.findViewById(R.id.cancel);
+			// cancelButton.setOnClickListener(new OnClickListener() {
+			// public void onClick(View v) {
+			// dialog.dismiss();
+			// }
+			// });
+			// dialog.show();
 		}
 			return true;
 

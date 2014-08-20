@@ -3,6 +3,11 @@ package com.kyotsu.wordbook.service;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+
+import com.kyotsu.wordbook.R;
 import com.kyotsu.wordbook.thrift.LoginResult;
 
 public class AppContext {
@@ -11,6 +16,10 @@ public class AppContext {
 	
 	public static String url = "http://192.168.5.193/wordbook/wordbookHandler.ashx";
 
+	public static String forgot_password_url = "http://192.168.5.193/wordbook";
+	
+	public static String register_url = "http://192.168.5.193/wordbook";
+	
 	public static LoginResult getUser() {
 		return User;
 	}
@@ -47,5 +56,14 @@ public class AppContext {
 			ret = ret +"/"+day;
 		}
 		return ret;
+	}
+
+	public static void alert(Context context, String msg){
+		new AlertDialog.Builder(context)
+		.setTitle(R.string.err_alert)
+		.setMessage(msg)
+		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {  
+			public void onClick(DialogInterface dialog, int id) {}  
+		}).create().show(); 
 	}
 }

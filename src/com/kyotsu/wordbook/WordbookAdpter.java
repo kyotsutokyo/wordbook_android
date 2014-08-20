@@ -140,8 +140,8 @@ public class WordbookAdpter extends BaseAdapter {
 				textView = (TextView) convertView.findViewById(R.id.word_name);
 				String word = list.get(position).getWord();
 				textView.setText(word);
-				final TextView textViewT = (TextView) convertView.findViewById(R.id.word_translation);
-				textViewT.setText(list.get(position).getTranslation());			
+				textView = (TextView) convertView.findViewById(R.id.word_translation);
+				textView.setText(list.get(position).getTranslation());			
 //				ViewTreeObserver observer = textViewT.getViewTreeObserver();
 //				observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 //				    @Override

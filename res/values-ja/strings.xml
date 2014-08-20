@@ -19,38 +19,27 @@
  	<string name="Password_hint">請輸入您的密碼</string>
  	<string name="button_sort1">字母排序</string>
  	<string name="button_sort2">時間排序</string>
- 	<string name="login">登入</string>
  	<string name="button_delete1">刪一單字</string>
  	<string name="button_delete2">刪多單字</string>
  	<string name="button_delete3">刪除</string>
  	<string name="remove_words">刪多單字</string>
-	<string name="show_visible">顯示隱藏單字</string> 	
- 	
+	<string name="show_visible">顯示隱藏單字</string> 
+		
  	<string name="user">メールアドレスまたはユーザID</string>
 	<string name="password">パスワード</string>
 	<string name="rememberLogin">次回以降自動的にログイン</string>
+	<string name="login">ログイン</string>
 	<string name="logout">ログアウト</string>
 	<string name="login_user_failed">メールアドレスまたはユーザIDが存在しません。</string>
 	<string name="login_password_failed">パスワードが正しくありません。</string>
 	<string name="login_failed">電波が届かない為、ログインに失敗しました。電波の入る場所へ移動するか、オフラインモードを利用してください。オフラインモードで起動しますか？</string>
 	<string name="error">エラー</string>
 	<string name="search_record_none">表示対象がありません。</string>
-	<string name="offline_mode_text2">オフラインモードで利用する場合は、写真の撮影、報告書の作成、未登録の報告参照等、サーバにアクセスを伴わない画面を操作出来ます。</string>
+	
+   <string name="offline_mode_text2">オフラインモードで利用する場合は、写真の撮影、報告書の作成、未登録の報告参照等、サーバにアクセスを伴わない画面を操作出来ます。</string>
     <string name="offline_mode_text3">尚、作成した報告書の送信等、サーバにアクセスを伴う操作は、ログインしオンラインモードで行なって下さい。</string>
       <string name="offline_mode_text1">＊オフラインモードで利用する場合は</string>
     <string name="offline_mode_click">オフラインモード</string>
     <string name="online_mode_click">ログイン</string>
-    <string name="forgot_password">ログインできない</string>
-    <string name="register">新規登録</string>
-    <string name="cancel_login">キャンセル</string>
-    
-    <string name="err_alert">エラー</string>
-    <string name="login_alert_1">メールアドレスまたはユーザIDが未入力です。</string>
-    <string name="login_alert_2">パスワード が未入力です。</string>
-    <string name="login_alert_3">メールアドレスまたはユーザIDは、半角英数字１２桁以内で入力してください。</string>
-    <string name="login_alert_4">パスワードは、半角英数字4～8桁で入力してください。</string>
-    <string name="login_alert_5">メールアドレスまたはユーザIDは、半角英数字１２桁以内で入力してください。</string>
-    <string name="login_alert_6">パスワードは、半角英数字4～8桁で入力してください。</string>
-    
 </resources>
 
