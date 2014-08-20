@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ 
+    <string name="app_name">Notebook\nヾ(*・ω・)ノ</string> 
+    <string name="menu_settings">Settings</string>
+ 	<string name="action_settings">Settings</string>
+ 	<string name="action_login">ログイン</string>
+ 	<string name="remove">刪一單字</string>
+  	<string name="button_add">新增單字</string>
+ 	<string name="button_show1">隱藏解釋</string>
+ 	<string name="button_show2">顯示解釋</string>
+ 	<string name="word_hint">請輸入您的單字</string>
+ 	<string name="translation_hint">請輸入這單字的解釋</string>
+ 	<string name="cancel">取消</string>
+ 	<string name="ok">確認</string>
+ 	<string name="ID">ID</string>
+ 	<string name="Password">Password</string>
+ 	<string name="ID_hint">請輸入您的帳號</string>
+ 	<string name="Password_hint">請輸入您的密碼</string>
+ 	<string name="button_sort1">字母排序</string>
+ 	<string name="button_sort2">時間排序</string>
+ 	<string name="login">登入</string>
+ 	<string name="button_delete1">刪一單字</string>
+ 	<string name="button_delete2">刪多單字</string>
+ 	<string name="button_delete3">刪除</string>
+ 	<string name="remove_words">刪多單字</string>
+	<string name="show_visible">顯示隱藏單字</string> 	
+ 	
+ 	
+ 	
+ 	
+ 	<style name="ButtonText"> 	        
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+</resources>
+
