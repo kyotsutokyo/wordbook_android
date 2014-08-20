@@ -1,97 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout android:layout_height="match_parent" 
-    android:layout_width="match_parent" 
-    xmlns:tools="http://schemas.android.com/tools"
-     xmlns:android="http://schemas.android.com/apk/res/android">
-<!-- Header aligned to top -->
-<RelativeLayout 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content"
-    android:gravity="center" 
-    android:layout_alignParentTop="true" 
-    android:id="@+id/header">
-    	
-</RelativeLayout>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-<!-- Footer aligned to bottom -->
+    <!-- Header aligned to top -->
 
-<RelativeLayout 
-    android:layout_height="wrap_content" 
-	android:layout_width="match_parent"
-	 android:background="#FFFF93"
-	 android:gravity="center" 
-	 android:id="@+id/footer" 
-	android:layout_alignParentBottom="true">
-	
-<HorizontalScrollView
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
+    </RelativeLayout>
 
-<LinearLayout
-  android:orientation="horizontal"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content">
-<Button
-		android:id="@+id/btnsort"
-	    style="@style/ButtonText" 
-		android:background="@drawable/btn_pink_glossy"
-		android:layout_width="100dp"
-		android:layout_height="wrap_content"
-		android:text="@string/button_sort1"
- 	/> 
-	
-	<Button
-		android:id="@+id/btnShow"
-	    style="@style/ButtonText" 
-		android:background="@drawable/btn_blue_glossy"
-		android:layout_width="100dp"
-		android:text="@string/button_show1"		
-	 />
+    <!-- Footer aligned to bottom -->
 
-	<Button
-		android:id="@+id/btnAdd"		
-		style="@style/ButtonText" 
-		android:background="@drawable/btn_pink_glossy"
-		android:layout_width="100dp"
-		android:text="@string/button_add"	
-	 />
-	
-	<Button
-		android:id="@+id/btnCancel"		
-		style="@style/ButtonText" 
-		android:background="@drawable/btn_pink_glossy"
-		android:layout_width="150dp"
-		android:text="@string/cancel"	
-	 />
-	
-	<Button
-		android:id="@+id/btnremove"		
-		style="@style/ButtonText" 
-		android:background="@drawable/btn_blue_glossy"
-		android:layout_width="150dp"
-		android:text="@string/button_delete3"	
-	 />
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFF93"
+        android:gravity="center" >
 
-</HorizontalScrollView>
- </RelativeLayout>
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
-<!-- Scrollable Item below header and above footer -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
 
-<!-- <ScrollView android:layout_height="fill_parent" 
-    android:layout_width="fill_parent" 
-     android:id="@+id/scrollableContents" android:layout_below="@id/header"
-      android:layout_above="@id/footer"> -->
-<!-- Inflate the contents of the ScrollView dynamicaly -->
+                <Button
+                    android:id="@+id/btnsort"
+                    style="@style/ButtonText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_pink_glossy"
+                    android:text="@string/button_sort1" />
 
- 	<ListView 
- 	    android:id="@+id/listview"
- 	    android:layout_height="fill_parent" 
-    	android:layout_width="fill_parent" 
-     	android:layout_below="@id/header"
-      	android:layout_above="@id/footer"    	
-    />
- 		 	         
-<!--</ScrollView>-->
+                <Button
+                    android:id="@+id/btnShow"
+                    style="@style/ButtonText"
+                    android:layout_width="100dp"
+                    android:background="@drawable/btn_blue_glossy"
+                    android:text="@string/button_show1" />
+
+                <Button
+                    android:id="@+id/btnAdd"
+                    style="@style/ButtonText"
+                    android:layout_width="100dp"
+                    android:background="@drawable/btn_pink_glossy"
+                    android:text="@string/button_add" />
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/ButtonText"
+                    android:layout_width="150dp"
+                    android:background="@drawable/btn_pink_glossy"
+                    android:text="@string/cancel" />
+
+                <Button
+                    android:id="@+id/btnremove"
+                    style="@style/ButtonText"
+                    android:layout_width="150dp"
+                    android:background="@drawable/btn_blue_glossy"
+                    android:text="@string/button_delete3" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+    <!-- Inflate the contents of the ScrollView dynamicaly -->
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header" />
 
 </RelativeLayout>

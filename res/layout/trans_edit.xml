@@ -3,74 +3,77 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#FFE6FF"
-    android:orientation="vertical">
-   <TextView 
-        android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dip"
-        android:textSize="20dip"
         android:layout_marginRight="20dip"
+        android:gravity="left"
         android:text="Word"
-        android:gravity="left"
-        android:typeface="monospace"
-        android:textColor="#00ccff"/>          
-          
-   <TextView 
-       android:id="@+id/fix_word"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="20dip"
-        android:textSize="18dip"
-        android:layout_marginRight="20dip"
-        android:gravity="left"
-        android:typeface="serif"
-        android:textColor="#B15BFF"/>   
-         
-     <TextView
-        android:id="@+id/Translation"
-        android:textSize="20dip"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="20dip"
-        android:layout_marginRight="20dip"
-        android:text="Translation"
-        android:gravity="left"
-        android:typeface="monospace"
         android:textColor="#00ccff"
-       />    
+        android:textSize="20dip"
+        android:typeface="monospace" />
+
+    <TextView
+        android:id="@+id/fix_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:gravity="left"
+        android:textColor="#B15BFF"
+        android:textSize="18dip"
+        android:typeface="serif" />
+
+    <TextView
+        android:id="@+id/Translation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:gravity="left"
+        android:text="Translation"
+        android:textColor="#00ccff"
+        android:textSize="20dip"
+        android:typeface="monospace" />
+
     <EditText
         android:id="@+id/Translation_edit"
-        android:layout_height="wrap_content"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip"
-        android:scrollHorizontally="true"
         android:autoText="false"
         android:capitalize="none"
         android:gravity="fill_horizontal"
         android:hint="@string/translation_hint"
-        />     
-        
-    
-<!-- Footer aligned to bottom -->
+        android:scrollHorizontally="true" />
 
-<RelativeLayout android:layout_height="wrap_content" 
-	    android:layout_width="match_parent" android:gravity="center" 
-	    android:id="@+id/footer" 
-		android:layout_alignParentBottom="true"> 
-		<Button
-		android:id="@+id/cancel"
-		android:layout_width="150dp"
-		android:textColor="#ff4d4d"
-		android:layout_height="wrap_content"
-		android:text="@string/cancel" />
+    <!-- Footer aligned to bottom -->
 
-      	<Button
-		android:id="@+id/ok"
-		android:layout_width="150dp"
-		android:layout_height="wrap_content"
-		android:text="@string/ok"
-		android:textColor="#ff4d4d"
-		android:layout_toRightOf="@+id/cancel"/>
-      	</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="#ff4d4d" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/cancel"
+            android:text="@string/ok"
+            android:textColor="#ff4d4d" />
+    </RelativeLayout>
+
 </LinearLayout>

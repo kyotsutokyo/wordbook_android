@@ -15,6 +15,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -138,8 +140,19 @@ public class WordbookAdpter extends BaseAdapter {
 				textView = (TextView) convertView.findViewById(R.id.word_name);
 				String word = list.get(position).getWord();
 				textView.setText(word);
-				textView = (TextView) convertView.findViewById(R.id.word_translation);
-				textView.setText(list.get(position).getTranslation());			
+				final TextView textViewT = (TextView) convertView.findViewById(R.id.word_translation);
+				textViewT.setText(list.get(position).getTranslation());			
+//				ViewTreeObserver observer = textViewT.getViewTreeObserver();
+//				observer.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+//				    @Override
+//				    public void onGlobalLayout() {
+//				        int maxLines = (int) textViewT.getHeight()/textViewT.getLineHeight();
+//				        textViewT.setMaxLines(maxLines);
+//				        textViewT.getViewTreeObserver().removeGlobalOnLayoutListener(
+//				                this);
+//				    }
+//				});
+//				
 				if (hideTranslation) {
 					textView.findViewById(R.id.word_translation).setVisibility(View.GONE);
 				}

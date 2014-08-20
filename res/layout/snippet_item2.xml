@@ -4,18 +4,18 @@
     android:layout_height="wrap_content"
     android:background="#2F2F2F"
     android:gravity="center_vertical" >
- 
+
     <TextView
         android:id="@+id/textSeparator"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:background="#00ccff"
-        android:textSize="15sp"
+        android:gravity="center"
         android:textAllCaps="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFF"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:visibility="visible" />
- 
+
 </LinearLayout>
