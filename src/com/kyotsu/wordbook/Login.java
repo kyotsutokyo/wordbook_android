@@ -48,6 +48,7 @@ public class Login extends FragmentActivity {
 	Button cancelButton = null;
 	private LoginTask loginTask;
 	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
