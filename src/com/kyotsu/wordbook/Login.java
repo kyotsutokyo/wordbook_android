@@ -3,8 +3,10 @@ package com.kyotsu.wordbook;
 import java.util.Date;
 import java.util.Map;
 
+import com.kyotsu.wordbook.WordbookAdpter.OnRowCheckChangedListener;
 import com.kyotsu.wordbook.service.AppContext;
 import com.kyotsu.wordbook.task.LoginTask;
+import com.kyotsu.wordbook.task.LoginTask.OnLoginSuccessListener;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -44,12 +46,11 @@ public class Login extends FragmentActivity {
 	Button forgotButton = null;
 	Button registerButton = null;
 	Button cancelButton = null;
-
+	private LoginTask loginTask;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
 		setContentView(R.layout.activity_login);
 		userText = (TextView) findViewById(R.id.user_name);
 		pwText = (TextView) findViewById(R.id.user_password);
@@ -87,16 +88,16 @@ public class Login extends FragmentActivity {
 		});
 		int inputType = InputType.TYPE_CLASS_TEXT
 				| InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS;
-		userText.setText(prefs.getString(LOGIN_NAME, null));
+		userText.setText(AppContext.GetSavedLoginUserName(this));
 		userText.setInputType(inputType);
-		pwText.setText(prefs.getString(LOGIN_PASSWORD, null));
+
+		//pwText.setText(prefs.getString(LOGIN_PASSWORD, null));
+		loginTask = new LoginTask(this, "", "");
 	}
 
 	public void onOfflineModeClick(View v) {
 
 	}
-
-	
 	
 	public void onLoginClick(View v) {
 		String userid = null;
@@ -114,7 +115,17 @@ public class Login extends FragmentActivity {
 			return;
 		}
 
-		new LoginTask(Login.this).execute(new String[] { userid, password,
+		loginTask.set_user_name(userid);
+		loginTask.set_user_password(password);
+		loginTask.setLoginSuccessEventListener(new OnLoginSuccessListener() {
+			
+			@Override
+			public void onLoginSuccess(String user_id,String user_name,String user_password) {
+				AppContext.dbHelper.UpdateWordUserId();
+			}
+		});
+		
+		loginTask.execute(new String[] { userid, password,
 				AppContext.url });
 	}
 
@@ -169,4 +180,6 @@ public class Login extends FragmentActivity {
 	protected void onResume() {
 		super.onResume();
 	}
+	
+	
 }

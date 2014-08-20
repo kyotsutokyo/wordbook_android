@@ -22,11 +22,43 @@ public class LoginTask extends WordbookAsync<String[], LoginResult, Exception> {
 	
 	private ProgressDialog m_Dialog = null;
 	
+	private String _user_name;
+	
+	public String get_user_name() {
+		return _user_name;
+	}
+
+	public void set_user_name(String _user_name) {
+		this._user_name = _user_name;
+	}
+
+	public String get_user_password() {
+		return _user_password;
+	}
+
+	public void set_user_password(String _user_password) {
+		this._user_password = _user_password;
+	}
+
+	private String _user_password;
+	
 	public Context _context;
 	
-	public LoginTask(Context context)
+	OnLoginSuccessListener mListener;
+	
+	public interface OnLoginSuccessListener{
+		public void onLoginSuccess(String user_id,String user_name,String user_password);
+	}
+	
+	public void setLoginSuccessEventListener(OnLoginSuccessListener eventListener) {
+		mListener=eventListener;
+	}
+	
+	public LoginTask(Context context,String user_name,String user_password)
 	{
 		_context = context;
+		_user_name = user_name;
+		_user_password = user_password;
 	}
 	
 	@Override
@@ -75,7 +107,10 @@ public class LoginTask extends WordbookAsync<String[], LoginResult, Exception> {
 			Toast.makeText(_context, result.msg, Toast.LENGTH_LONG).show();
 			if(result.success)
 			{
-				AppContext.User = result;
+				AppContext.SaveLoginUserId(_context, String.valueOf(result.getUserid()));
+				AppContext.SaveLoginUserName(_context, _user_name);
+				AppContext.SaveLoginUserPassword(_context, _user_password);
+				if(mListener!=null) mListener.onLoginSuccess(String.valueOf(result.getUserid()), _user_name, _user_password);
 			}
 		}else
 		{

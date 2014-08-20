@@ -6,13 +6,15 @@ import java.util.Date;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
 
 import com.kyotsu.wordbook.R;
+import com.kyotsu.wordbook.db.DbHelper;
 import com.kyotsu.wordbook.thrift.LoginResult;
 
 public class AppContext {
-
-	public static LoginResult User ;
 	
 	public static String url = "http://192.168.5.193/wordbook/wordbookHandler.ashx";
 
@@ -20,13 +22,15 @@ public class AppContext {
 	
 	public static String register_url = "http://192.168.5.193/wordbook";
 	
-	public static LoginResult getUser() {
-		return User;
-	}
-
-	public static void setUser(LoginResult user) {
-		User = user;
-	}
+	public static String key_user_id ="user_id";
+	
+	public static String key_user_name = "user_name";
+	
+	public static String key_user_password ="user_password";
+	
+	public static String key_user_id_is_empty = "-1";
+	
+	public static DbHelper dbHelper;
 	
 	public static String getDateString(Date date)
 	{
@@ -66,4 +70,47 @@ public class AppContext {
 			public void onClick(DialogInterface dialog, int id) {}  
 		}).create().show(); 
 	}
+
+	public static String GetSavedLoginUserId(Context context)
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		return  settings.getString(key_user_id, "-1");
+	}
+	
+	public static String GetSavedLoginUserName(Context context)
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		return settings.getString(key_user_name, "");
+	}
+	
+	public static String GetSavedLoginUserPassword(Context context)
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		return settings.getString(key_user_password, "");
+	}
+	
+	public static void SaveLoginUserId(Context context,String userid)
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		Editor edit = settings.edit();
+		edit.putString(key_user_id, userid);
+		edit.apply();
+	}
+	
+	public static void SaveLoginUserName(Context context,String user_name)
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		Editor edit = settings.edit();
+		edit.putString(key_user_name, user_name);
+		edit.apply();
+	}
+	
+	public static void SaveLoginUserPassword(Context context,String user_password)
+	{
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+		Editor edit = settings.edit();
+		edit.putString(key_user_password, user_password);
+		edit.apply();
+	}
+	
 }

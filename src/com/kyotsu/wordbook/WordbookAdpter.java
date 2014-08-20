@@ -27,6 +27,7 @@ public class WordbookAdpter extends BaseAdapter {
 	public boolean isOrderByTime = true;
 	public boolean isDeleteWord = false;
 	public boolean hideTranslation = false;
+	
 	OnRowCheckChangedListener mListener;
 	
 	private List<WordbookEntity> checkedList = new ArrayList<WordbookEntity>();

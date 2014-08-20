@@ -42,7 +42,7 @@ public class MainActivity extends FragmentActivity {
 	Button ButtonCancel;
 	Button Buttonremove;
 	LayoutInflater inflater;
-	DbHelper dbHelper;
+	
 	AccountHelper accountHelper;
 	SQLiteDatabase db;
 	private WordbookAdpter ws;
@@ -56,8 +56,8 @@ public class MainActivity extends FragmentActivity {
 				Context.LAYOUT_INFLATER_SERVICE);
 
 		accountHelper = new AccountHelper(this);
-		dbHelper = new DbHelper(this, null, null, 2);
-		List<WordbookEntity> wbList = dbHelper.GetWordsByTime();
+		AppContext.dbHelper = new DbHelper(this, null, null, 2);
+		List<WordbookEntity> wbList =AppContext.dbHelper.GetWordsByTime();
 		ws = new WordbookAdpter(wbList, inflater);
 		mListView.setAdapter(ws);
 		mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,20 +100,20 @@ public class MainActivity extends FragmentActivity {
 									.setText(word.getTranslation());
 							okbutton.setOnClickListener(new OnClickListener() {
 								public void onClick(View v) {
-									dbHelper.DeleteWord(word_item, "2");
-									List<WordbookEntity> wbList = dbHelper
+									AppContext.dbHelper.DeleteWord(word_item);
+									List<WordbookEntity> wbList = AppContext.dbHelper
 											.GetWords();
-									dbHelper.DeleteWords(ws.getCheckedList());
+									AppContext.dbHelper.DeleteWords(ws.getCheckedList());
 									String translation = ((EditText) dialog
 											.findViewById(R.id.Translation_edit))
 											.getText().toString();
-									dbHelper.ChangeWord(word_item, translation,
-											"2", date);
+									AppContext.dbHelper.ChangeWord(word_item, translation,
+											 date);
 
 									if (ws.isOrderByTime)
-										wbList = dbHelper.GetWordsByTime();
+										wbList = AppContext.dbHelper.GetWordsByTime();
 									else
-										wbList = dbHelper
+										wbList = AppContext.dbHelper
 												.GetWordsAlphabetizer();
 									ws.setList(wbList);
 									ws.notifyDataSetChanged();
@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity {
 				ws.isOrderByTime = !ws.isOrderByTime;
 				if (!ws.isOrderByTime) {
 					sortButton.setText(R.string.button_sort2);
-					List<WordbookEntity> words = dbHelper
+					List<WordbookEntity> words = AppContext.dbHelper
 							.GetWordsAlphabetizer();
 					ws.setList(words);
 					ws.notifyDataSetChanged();
@@ -168,7 +168,7 @@ public class MainActivity extends FragmentActivity {
 							Toast.LENGTH_SHORT).show();
 				} else {
 					sortButton.setText(R.string.button_sort1);
-					List<WordbookEntity> wbList = dbHelper.GetWordsByTime();
+					List<WordbookEntity> wbList = AppContext.dbHelper.GetWordsByTime();
 					ws.setList(wbList);
 					ws.notifyDataSetChanged();
 					Toast.makeText(MainActivity.this, "時間排序しました。",
@@ -208,12 +208,12 @@ public class MainActivity extends FragmentActivity {
 							String translation = ((EditText) dialog
 									.findViewById(R.id.Translation_edit))
 									.getText().toString();
-							dbHelper.InsertWord(word, translation, "2");
+							AppContext.dbHelper.InsertWord(word, translation);
 							List<WordbookEntity> wbList;
 							if (ws.isOrderByTime)
-								wbList = dbHelper.GetWordsByTime();
+								wbList = AppContext.dbHelper.GetWordsByTime();
 							else
-								wbList = dbHelper.GetWordsAlphabetizer();
+								wbList = AppContext.dbHelper.GetWordsAlphabetizer();
 							ws.setList(wbList);
 							ws.notifyDataSetChanged();
 
@@ -288,7 +288,7 @@ public class MainActivity extends FragmentActivity {
 								public void onClick(DialogInterface dialog,
 										int which) {
 									dialog.cancel();
-									dbHelper.DeleteWords(ws.getCheckedList());
+									AppContext.dbHelper.DeleteWords(ws.getCheckedList());
 									List<WordbookEntity> newList = DeleteWordFromList(
 											ws.getList(), ws.getCheckedList());
 									ws.setList(newList);
@@ -370,8 +370,8 @@ public class MainActivity extends FragmentActivity {
 				public void onClick(View v) {
 					String word = ((EditText) dialog
 							.findViewById(R.id.Word_edit)).getText().toString();
-					dbHelper.DeleteWord(word, "2");
-					List<WordbookEntity> wbList = dbHelper.GetWords();
+					AppContext.dbHelper.DeleteWord(word);
+					List<WordbookEntity> wbList = AppContext.dbHelper.GetWords();
 					ws.setList(wbList);
 					ws.notifyDataSetChanged();
 

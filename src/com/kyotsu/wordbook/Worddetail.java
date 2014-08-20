@@ -26,7 +26,7 @@ public class Worddetail extends Activity {
 			if (b != null){
 				if (b.containsKey("WordItem")) {
 					String wordItem = b.getString("WordItem");
-					word = dbHelper.GetWord(wordItem, "2");
+					word = dbHelper.GetWord(wordItem);
 				}
 			}
 	        inflater = (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
